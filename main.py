@@ -4,6 +4,7 @@ from tkinter import ttk
 import bubble_sort    # Bubble sort module.
 import selection_sort # New selection sort module.
 import insertion_sort # New insertion sort module.
+import merge_sort     # New merge sort module.
 # Create the main application window.
 root = tk.Tk()
 root.title("Algorithm Visualizer")
@@ -24,11 +25,15 @@ notebook.add(selection_tab, text="Selection Sort")
 insertion_tab = insertion_sort.InsertionSortTab(notebook)
 notebook.add(insertion_tab, text="Insertion Sort")
 
+# Create and add the Merge Sort tab.
+merge_tab = merge_sort.MergeSortTab(notebook)
+notebook.add(merge_tab, text="Merge Sort")
+
 
 # You can add more algorithm tabs here if needed.
 # For example, placeholders for other algorithms:
 algorithms = [
-    "Merge Sort", "Quicksort", "Breadth First Search",
+    "Quicksort", "Breadth First Search",
     "Depth First Search", "Bellman Ford", "Djikstra's", "Prim's",
     "Kruskal's", "Topological Sort", "A*", "Greedy Best First"
 ]
