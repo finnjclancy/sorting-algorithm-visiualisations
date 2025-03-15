@@ -84,8 +84,94 @@ class QuickSortTab(ttk.Frame):
             e = ttk.Entry(self.array_frame, width=5)
             e.grid(row=1, column=i, padx=5, pady=5)
             self.entries.append(e)
-        ttk.Button(self.array_frame, text="Start Quick Sort", command=self.start_sort)\
-            .grid(row=2, column=0, columnspan=num_elements, pady=10)
+        
+        # Create a frame for buttons
+        button_frame = ttk.Frame(self.array_frame)
+        button_frame.grid(row=2, column=0, columnspan=num_elements, pady=10)
+        
+        # Add shuffle button
+        ttk.Button(button_frame, text="Shuffle Array", command=self.shuffle_array)\
+            .grid(row=0, column=0, padx=5, pady=5)
+        
+        # Add start button
+        ttk.Button(button_frame, text="Start Quick Sort", command=self.start_sort)\
+            .grid(row=0, column=1, padx=5, pady=5)
+
+    def shuffle_array(self):
+        """Shuffle the values in the input fields."""
+        import random
+        
+        # Check if there are any entries
+        if not self.entries:
+            return
+        
+        try:
+            # Get all the values from entries
+            values = [e.get() for e in self.entries]
+            
+            # Shuffle the values
+            random.shuffle(values)
+            
+            # Update the entries with shuffled values
+            for entry, value in zip(self.entries, values):
+                entry.delete(0, tk.END)
+                entry.insert(0, value)
+            
+            # Show a preview of the shuffle
+            self.preview_shuffle(values)
+            
+        except Exception as e:
+            # Handle any errors
+            print(f"Error shuffling: {e}")
+
+    def preview_shuffle(self, values):
+        """Show a preview of the shuffled array."""
+        # Clear canvas
+        self.canvas.delete("all")
+        
+        # Draw a single row showing the shuffled array
+        ch = int(self.canvas["height"])
+        cw = int(self.canvas["width"])
+        
+        # Calculate positioning
+        y_start = 30
+        row_height = 60
+        left_margin = 180
+        right_margin = 80
+        usable_width = cw - left_margin - right_margin
+        
+        # Draw title
+        self.canvas.create_text(
+            50, y_start + row_height / 2,
+            text="Shuffled\nArray", font=("Arial", 12), fill="black", anchor="w"
+        )
+        self.canvas.create_line(
+            120, y_start + row_height / 2,
+            145, y_start + row_height / 2,
+            arrow=tk.LAST, fill="black", width=2
+        )
+        
+        # Draw boxes
+        n = len(values)
+        box_gap = 10
+        box_width = (usable_width - (n - 1) * box_gap) / float(n)
+        
+        for i, val in enumerate(values):
+            x0 = left_margin + i * (box_width + box_gap)
+            y0 = y_start
+            x1 = x0 + box_width
+            y1 = y0 + row_height
+            
+            # Draw box
+            self.canvas.create_rectangle(x0, y0, x1, y1, fill="red", outline="black")
+            
+            # Draw text
+            self.canvas.create_text(
+                (x0 + x1) / 2, (y0 + y1) / 2,
+                text=val,
+                fill="black",
+                font=("Arial", 14)
+            )
 
     def start_sort(self):
         try:
