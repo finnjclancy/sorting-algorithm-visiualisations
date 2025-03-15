@@ -53,7 +53,7 @@ class SelectionSortTab(ttk.Frame):
         self.pause_play_button.grid(row=1, column=0, columnspan=3, padx=5, pady=5)
 
         # --- Bottom: Visualization Canvas (white background) ---
-        self.canvas = tk.Canvas(self, width=800, height=300, bg="white")
+        self.canvas = tk.Canvas(self, width=1000, height=500, bg="white")
         self.canvas.pack(pady=10)
 
     def set_speed(self, delay):

@@ -5,6 +5,7 @@ import bubble_sort    # Bubble sort module.
 import selection_sort # New selection sort module.
 import insertion_sort # New insertion sort module.
 import merge_sort     # New merge sort module.
+import quick_sort     # New quick sort module.
 # Create the main application window.
 root = tk.Tk()
 root.title("Algorithm Visualizer")
@@ -29,11 +30,15 @@ notebook.add(insertion_tab, text="Insertion Sort")
 merge_tab = merge_sort.MergeSortTab(notebook)
 notebook.add(merge_tab, text="Merge Sort")
 
+# Create and add the Quick Sort tab.
+quick_tab = quick_sort.QuickSortTab(notebook)
+notebook.add(quick_tab, text="Quick Sort")
+
 
 # You can add more algorithm tabs here if needed.
 # For example, placeholders for other algorithms:
 algorithms = [
-    "Quicksort", "Breadth First Search",
+    "Breadth First Search",
     "Depth First Search", "Bellman Ford", "Djikstra's", "Prim's",
     "Kruskal's", "Topological Sort", "A*", "Greedy Best First"
 ]

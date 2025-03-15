@@ -53,7 +53,7 @@ class BubbleSortTab(ttk.Frame):
 
         # --- Bottom Section: Visualization Canvas ---
         # Increase the canvas size to 800x300.
-        self.canvas = tk.Canvas(self, width=800, height=300, bg="white")
+        self.canvas = tk.Canvas(self, width=1000, height=500, bg="white")
         self.canvas.pack(pady=10)
 
     def set_speed(self, delay):
