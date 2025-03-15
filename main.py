@@ -7,6 +7,7 @@ import insertion_sort # New insertion sort module.
 import merge_sort     # New merge sort module.
 import quick_sort     # New quick sort module.
 import BFS            # New BFS module.
+import DFS            # New DFS module.
 # Create the main application window.
 root = tk.Tk()
 root.title("Algorithm Visualizer")
@@ -39,11 +40,15 @@ notebook.add(quick_tab, text="Quick Sort")
 bfs_tab = BFS.BreadthFirstSearchTab(notebook)
 notebook.add(bfs_tab, text="Breadth First Search")
 
+# Create and add the DFS tab.
+dfs_tab = DFS.DepthFirstSearchTab(notebook)
+notebook.add(dfs_tab, text="Depth First Search")
+
 
 # You can add more algorithm tabs here if needed.
 # For example, placeholders for other algorithms:
 algorithms = [
-    "Depth First Search", "Bellman Ford", "Djikstra's", "Prim's",
+    "Bellman Ford", "Djikstra's", "Prim's",
     "Kruskal's", "Topological Sort", "A*", "Greedy Best First"
 ]
 for algo in algorithms:
