@@ -1,3 +1,4 @@
+.DS_Store
 __pycache__/ 
 *.pyc
 *.pyo
@@ -5,7 +6,7 @@ __pycache__/
 *.pyw
 *.pyz
 *.pywz
-.DS_Store
+*.DS_Store
 *.pyc~
 *.pyo~
 *.pyd~
