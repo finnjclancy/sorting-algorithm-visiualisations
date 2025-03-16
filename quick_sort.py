@@ -9,7 +9,7 @@ class QuickSortTab(ttk.Frame):
         #  Title/Heading
         #######################################################################
         self.heading = tk.Label(
-            self, text="Quick Sort", font=("Arial", 24, "bold"), bg="#3a3a3a"
+            self, text="Quick Sort", font=("Arial", 24, "bold"), bg="#424242"
         )
         self.heading.pack(pady=10)
 

@@ -8,54 +8,115 @@ import merge_sort     # New merge sort module.
 import quick_sort     # New quick sort module.
 import BFS            # New BFS module.
 import DFS            # New DFS module.
+
 # Create the main application window.
 root = tk.Tk()
 root.title("Algorithm Visualizer")
 
-# Create a Notebook widget (tabs container).
-notebook = ttk.Notebook(root)
-notebook.pack(expand=True, fill='both')
+# Configure style to make tabs match background color
+style = ttk.Style()
+bg_color = root.cget('bg')  # Get default background color
 
-# Create and add the Bubble Sort tab.
-bubble_tab = bubble_sort.BubbleSortTab(notebook)
-notebook.add(bubble_tab, text="Bubble Sort")
+# Configure the tab appearance
+style.configure('TNotebook', background='black')
+style.configure('TNotebook.Tab', background='black', padding=[10, 2])
+style.map('TNotebook.Tab', 
+          background=[('selected', 'black'), ('active', bg_color)],
+          foreground=[('selected', 'black'), ('active', 'black')])
 
-# Create and add the Selection Sort tab.
-selection_tab = selection_sort.SelectionSortTab(notebook)
-notebook.add(selection_tab, text="Selection Sort")
+# Configure the frame style to match
+style.configure('TFrame', background='#3a3a3a')
 
-# Create and add the Insertion Sort tab.
-insertion_tab = insertion_sort.InsertionSortTab(notebook)
-notebook.add(insertion_tab, text="Insertion Sort")
+# Create a main Notebook widget for categories
+main_notebook = ttk.Notebook(root)
+main_notebook.pack(expand=True, fill='both')
 
-# Create and add the Merge Sort tab.
-merge_tab = merge_sort.MergeSortTab(notebook)
-notebook.add(merge_tab, text="Merge Sort")
+# Create a frame for each category
+sorting_frame = ttk.Frame(main_notebook, style='TFrame')
+traversal_frame = ttk.Frame(main_notebook, style='TFrame')
+shortest_path_frame = ttk.Frame(main_notebook, style='TFrame')
+mst_frame = ttk.Frame(main_notebook, style='TFrame')
+other_frame = ttk.Frame(main_notebook, style='TFrame')
 
-# Create and add the Quick Sort tab.
-quick_tab = quick_sort.QuickSortTab(notebook)
-notebook.add(quick_tab, text="Quick Sort")
+# Add category frames to the main notebook
+main_notebook.add(sorting_frame, text="Sorting Algorithms")
+main_notebook.add(traversal_frame, text="Graph Traversal")
+main_notebook.add(shortest_path_frame, text="Shortest Path")
+main_notebook.add(mst_frame, text="Minimum Spanning Tree")
+main_notebook.add(other_frame, text="Other Graph Algorithms")
 
-# Create and add the BFS tab.
-bfs_tab = BFS.BreadthFirstSearchTab(notebook)
-notebook.add(bfs_tab, text="Breadth First Search")
+# Create sub-notebooks for each category
+sorting_notebook = ttk.Notebook(sorting_frame)
+sorting_notebook.pack(expand=True, fill='both')
 
-# Create and add the DFS tab.
-dfs_tab = DFS.DepthFirstSearchTab(notebook)
-notebook.add(dfs_tab, text="Depth First Search")
+traversal_notebook = ttk.Notebook(traversal_frame)
+traversal_notebook.pack(expand=True, fill='both')
 
+shortest_path_notebook = ttk.Notebook(shortest_path_frame)
+shortest_path_notebook.pack(expand=True, fill='both')
 
-# You can add more algorithm tabs here if needed.
-# For example, placeholders for other algorithms:
-algorithms = [
-    "Bellman Ford", "Djikstra's", "Prim's",
-    "Kruskal's", "Topological Sort", "A*", "Greedy Best First"
+mst_notebook = ttk.Notebook(mst_frame)
+mst_notebook.pack(expand=True, fill='both')
+
+other_notebook = ttk.Notebook(other_frame)
+other_notebook.pack(expand=True, fill='both')
+
+# Create and add the Sorting Algorithm tabs
+bubble_tab = bubble_sort.BubbleSortTab(sorting_notebook)
+sorting_notebook.add(bubble_tab, text="Bubble Sort")
+
+selection_tab = selection_sort.SelectionSortTab(sorting_notebook)
+sorting_notebook.add(selection_tab, text="Selection Sort")
+
+insertion_tab = insertion_sort.InsertionSortTab(sorting_notebook)
+sorting_notebook.add(insertion_tab, text="Insertion Sort")
+
+merge_tab = merge_sort.MergeSortTab(sorting_notebook)
+sorting_notebook.add(merge_tab, text="Merge Sort")
+
+quick_tab = quick_sort.QuickSortTab(sorting_notebook)
+sorting_notebook.add(quick_tab, text="Quick Sort")
+
+# Create and add the Graph Traversal tabs
+bfs_tab = BFS.BreadthFirstSearchTab(traversal_notebook)
+traversal_notebook.add(bfs_tab, text="Breadth First Search")
+
+dfs_tab = DFS.DepthFirstSearchTab(traversal_notebook)
+traversal_notebook.add(dfs_tab, text="Depth First Search")
+
+# Add placeholder tabs for Shortest Path algorithms
+shortest_path_algorithms = [
+    "Dijkstra's Algorithm", 
+    "Bellman-Ford Algorithm", 
+    "A* Search"
 ]
-for algo in algorithms:
-    frame = ttk.Frame(notebook)
-    label = tk.Label(frame, text=f"{algo} visualization not implemented yet.", font=("Arial", 14))
+for algo in shortest_path_algorithms:
+    frame = ttk.Frame(shortest_path_notebook, style='TFrame')
+    label = tk.Label(frame, text=f"{algo} visualization not implemented yet.", font=("Arial", 14), bg=bg_color)
     label.pack(expand=True, padx=20, pady=20)
-    notebook.add(frame, text=algo)
+    shortest_path_notebook.add(frame, text=algo.split()[0])  # Use first word as tab title
+
+# Add placeholder tabs for Minimum Spanning Tree algorithms
+mst_algorithms = [
+    "Prim's Algorithm", 
+    "Kruskal's Algorithm"
+]
+for algo in mst_algorithms:
+    frame = ttk.Frame(mst_notebook, style='TFrame')
+    label = tk.Label(frame, text=f"{algo} visualization not implemented yet.", font=("Arial", 14), bg=bg_color)
+    label.pack(expand=True, padx=20, pady=20)
+    mst_notebook.add(frame, text=algo.split("'")[0])  # Use name before apostrophe
+
+# Add placeholder tabs for other graph algorithms
+other_algorithms = [
+    "Topological Sort", 
+    "Greedy Best First Search"
+]
+for algo in other_algorithms:
+    frame = ttk.Frame(other_notebook, style='TFrame')
+    label = tk.Label(frame, text=f"{algo} visualization not implemented yet.", font=("Arial", 14), bg=bg_color)
+    label.pack(expand=True, padx=20, pady=20)
+    other_notebook.add(frame, text=algo.split()[0])  # Use first word as tab title
 
 # Add watermark label at the bottom-right of the window.
 watermark = tk.Label(root, text="finn clancy 2025", font=("Arial", 8), fg="#a0a0a0")

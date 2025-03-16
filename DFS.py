@@ -11,11 +11,11 @@ class DepthFirstSearchTab(ttk.Frame):
         # Style / Dark background for frames/labels, but single white canvas
         #######################################################################
         style = ttk.Style()
-        style.configure("Dark.TFrame", background="#3a3a3a")
-        style.configure("Dark.TLabel", background="#3a3a3a", foreground="white")
-        style.configure("Dark.TButton", background="#3a3a3a", foreground="white")
-        style.configure("Dark.TCheckbutton", background="#3a3a3a")
-        style.configure("Dark.TRadiobutton", background="#3a3a3a", foreground="white")
+        style.configure("Dark.TFrame", background="#424242")
+        style.configure("Dark.TLabel", background="#424242", foreground="white")
+        style.configure("Dark.TButton", background="#424242", foreground="white")
+        style.configure("Dark.TCheckbutton", background="#424242")
+        style.configure("Dark.TRadiobutton", background="#424242", foreground="white")
 
         self.configure(style="Dark.TFrame")
 
@@ -24,7 +24,7 @@ class DepthFirstSearchTab(ttk.Frame):
         #######################################################################
         self.heading = tk.Label(
             self, text="Depth First Search", font=("Arial", 24, "bold"),
-            bg="#3a3a3a", fg="white"
+            bg="#424242", fg="white"
         )
         self.heading.pack(pady=10, fill="x")
 
@@ -141,7 +141,7 @@ class DepthFirstSearchTab(ttk.Frame):
         label_frame.pack(anchor="nw", pady=5)
 
         tk.Label(label_frame, text="Enter each node label:", font=("Arial", 10, "bold"),
-                 bg="#3a3a3a", fg="white").pack(anchor="w")
+                 bg="#424242", fg="white").pack(anchor="w")
 
         row_label_frame = ttk.Frame(label_frame, style="Dark.TFrame")
         row_label_frame.pack(side="top", anchor="w")
@@ -165,7 +165,7 @@ class DepthFirstSearchTab(ttk.Frame):
 
     def build_matrix_inputs(self):
         lbl = tk.Label(self.adjacency_frame, text="Adjacency Matrix", font=("Arial", 14, "bold"),
-                       bg="#3a3a3a", fg="white")
+                       bg="#424242", fg="white")
         lbl.pack(anchor="center", pady=5)
 
         container = ttk.Frame(self.adjacency_frame, style="Dark.TFrame")
@@ -177,19 +177,19 @@ class DepthFirstSearchTab(ttk.Frame):
                 row_vars.append(tk.BooleanVar(value=False))
             self.adjacency_matrix_vars.append(row_vars)
 
-        corner = tk.Label(container, text="", width=7, bg="#3a3a3a")
+        corner = tk.Label(container, text="", width=7, bg="#424242")
         corner.grid(row=0, column=0, padx=5, pady=5)
 
         self.matrix_col_labels = []
         for c in range(self.num_nodes):
-            lbl_c = tk.Label(container, text="", width=7, bg="#3a3a3a", fg="white",
+            lbl_c = tk.Label(container, text="", width=7, bg="#424242", fg="white",
                              font=("Arial", 9, "bold"), anchor="center")
             lbl_c.grid(row=0, column=c+1, padx=5, pady=5)
             self.matrix_col_labels.append(lbl_c)
 
         self.matrix_row_labels = []
         for r in range(self.num_nodes):
-            lbl_r = tk.Label(container, text="", width=7, bg="#3a3a3a", fg="white",
+            lbl_r = tk.Label(container, text="", width=7, bg="#424242", fg="white",
                              font=("Arial", 9, "bold"), anchor="e")
             lbl_r.grid(row=r+1, column=0, padx=5, pady=5)
             self.matrix_row_labels.append(lbl_r)
@@ -201,18 +201,18 @@ class DepthFirstSearchTab(ttk.Frame):
 
     def build_list_inputs(self):
         lbl = tk.Label(self.adjacency_frame, text="Adjacency List", font=("Arial", 10, "bold"),
-                       bg="#3a3a3a", fg="white")
+                       bg="#424242", fg="white")
         lbl.pack(anchor="w", pady=5)
 
         container = ttk.Frame(self.adjacency_frame, style="Dark.TFrame")
         container.pack()
 
         heading_lbl = tk.Label(container, text="Edges", font=("Arial", 9, "bold"),
-                               bg="#3a3a3a", fg="white")
+                               bg="#424242", fg="white")
         heading_lbl.grid(row=0, column=1, padx=5, pady=5)
 
         for r in range(self.num_nodes):
-            row_lbl = tk.Label(container, text="", width=7, bg="#3a3a3a", fg="white",
+            row_lbl = tk.Label(container, text="", width=7, bg="#424242", fg="white",
                                font=("Arial", 9, "bold"), anchor="e")
             row_lbl.grid(row=r+1, column=0, padx=5, pady=5, sticky="e")
 

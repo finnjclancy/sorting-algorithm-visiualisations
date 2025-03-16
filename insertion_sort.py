@@ -5,7 +5,7 @@ class InsertionSortTab(ttk.Frame):
     def __init__(self, parent):
         super().__init__(parent)
 
-        heading = tk.Label(self, text="Insertion Sort", font=("Arial", 24, "bold"), bg="#3a3a3a")
+        heading = tk.Label(self, text="Insertion Sort", font=("Arial", 24, "bold"), bg="#424242")
         heading.pack(pady=10)
         # List to store Entry widgets (user inputs)
         self.entries = []

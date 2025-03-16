@@ -11,7 +11,7 @@ class MergeSortTab(ttk.Frame):
         # ----------------------------
         # Top Label and Input Section
         # ----------------------------
-        self.heading = tk.Label(self, text="Merge Sort", font=("Arial", 24, "bold"), bg="#3a3a3a")
+        self.heading = tk.Label(self, text="Merge Sort", font=("Arial", 24, "bold"), bg="#424242")
         self.heading.pack(pady=10)
 
         self.entries = []
