@@ -407,10 +407,17 @@ class BreadthFirstSearchTab(ttk.Frame):
         # Center coordinates, adjust to account for the distance array on the left
         # Move down to account for the initial nodes array at top
         cx = w//2 + 30  # Shift right by 30 pixels to account for the distance array
-        cy = h//2 - 20  # Adjusted to account for initial array at top
         
-        # Increase the radius by reducing the subtractions
-        radius = min(cx - 60, cy - 40) - 30  # Less reduction to make the graph bigger
+        # Reserve space for both top and bottom elements
+        top_reserved = 80     # Space for initial nodes array at top
+        bottom_reserved = 80  # Space for pre-order array at bottom
+        
+        # Calculate center in the remaining middle space
+        available_height = h - top_reserved - bottom_reserved
+        cy = top_reserved + (available_height // 2)
+        
+        # Adjust radius to ensure graph fits within available space
+        radius = min(cx - 60, available_height//2 - 20) - 30
 
         n = self.num_nodes
         if n < 1:
@@ -673,8 +680,8 @@ class BreadthFirstSearchTab(ttk.Frame):
                 # event = ("edge", i, j)
                 _, i, j = event
                 
-                # Make the source node dark green
-                self._color_node(i, "darkgreen")
+                # Make the source node red (was darkgreen)
+                self._color_node(i, "red")
                 
                 # Highlight the edge
                 self._highlight_edge(i, j, "red")
@@ -686,7 +693,7 @@ class BreadthFirstSearchTab(ttk.Frame):
                 # event = ("completed", node_idx)
                 # This node has had all its outgoing edges explored
                 _, idx = event
-                self._color_node(idx, "red")  # Turn the node red
+                self._color_node(idx, "darkgreen")  # Turn the node darkgreen (was red)
             
         except StopIteration:
             # BFS complete

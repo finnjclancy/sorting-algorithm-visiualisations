@@ -227,17 +227,21 @@ class MergeSortTab(ttk.Frame):
         top_margin = 20
         bottom_margin = 20
         row_padding = 20  
-        line_gap = (canvas_height - top_margin - bottom_margin + 10) / total_lines
+        line_gap = (canvas_height - top_margin - bottom_margin + 10) / (total_lines + 1)
         row_height = line_gap - row_padding
         
         rows_to_draw = []
         split_levels = state.get("split_levels", [])
         for idx, level in enumerate(split_levels):
             y = top_margin + idx * line_gap
+            
+            # Label the first row as "input" instead of "splitting"
+            phase_label = "input" if idx == 0 else "splitting"
+            
             rows_to_draw.append({
                 "row": level,
                 "y": y,
-                "phase_label": "splitting",
+                "phase_label": phase_label,
                 "row_index": idx,
                 "row_height": row_height
             })
@@ -246,10 +250,15 @@ class MergeSortTab(ttk.Frame):
             merge_levels = state.get("merge_levels", [])
             for idx, level in enumerate(merge_levels):
                 y = top_margin + (len(split_levels) + idx) * line_gap
+                
+                # Check if this is the final merge level (sorted array)
+                # If it's the last level of merge_levels and there's only one array in it
+                phase_label = "sorted" if (idx == len(merge_levels)-1 and len(level) == 1) else "merging"
+                
                 rows_to_draw.append({
                     "row": level,
                     "y": y,
-                    "phase_label": "merging",
+                    "phase_label": phase_label,
                     "row_index": idx,
                     "row_height": row_height
                 })
